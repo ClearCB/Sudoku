@@ -1,7 +1,8 @@
-# from src.checkEsCuadrado import esCuadrado
-# from src.checkEsNumeroValido import esValido
-# from src.compararColumnas import compararColumnas
-# from src.compararLineas import compararLineas
+from src.checkEsCuadrado import esCuadrado
+from src.checkEsNumeroValido import esValido
+from src.compararColumnas import compararColumnas
+from src.compararLineas import compararLineas
+from src.checkRegionTresTres import checkRegionTresTres
 
 def sudokuValidator(sudoku):
 
@@ -10,7 +11,12 @@ def sudokuValidator(sudoku):
     noRepiteColumnas = compararColumnas(sudoku)
     noRepiteFila = compararLineas(sudoku)
 
-    if siEsCuadrado and siEsValido and noRepiteColumnas and noRepiteFila:
+    if len(sudoku) == 9:
+        checkRegionTresTres(sudoku)
+        if checkRegionTresTres and siEsCuadrado and siEsValido and noRepiteColumnas and noRepiteFila:
+            return True
+    
+    elif siEsCuadrado and siEsValido and noRepiteColumnas and noRepiteFila:
         return True
     else:
         return False
@@ -21,6 +27,8 @@ if __name__ == "__main__":
     from checkEsNumeroValido import esValido
     from compararColumnas import compararColumnas
     from compararLineas import compararLineas
+    from checkRegionTresTres import checkRegionTresTres
+
 
 
     assert sudokuValidator([[1,2,3,4],
