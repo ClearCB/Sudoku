@@ -10,11 +10,14 @@ def sudokuValidator(sudoku):
     siEsValido = esValido(sudoku)
     noRepiteColumnas = compararColumnas(sudoku)
     noRepiteFila = compararLineas(sudoku)
+    siRegion = checkRegionTresTres(sudoku)
 
     if len(sudoku) == 9:
-        checkRegionTresTres(sudoku)
-        if checkRegionTresTres and siEsCuadrado and siEsValido and noRepiteColumnas and noRepiteFila:
+        
+        if siRegion and siEsCuadrado and siEsValido and noRepiteColumnas and noRepiteFila:
             return True
+        else:
+            return False
     
     elif siEsCuadrado and siEsValido and noRepiteColumnas and noRepiteFila:
         return True
@@ -22,13 +25,6 @@ def sudokuValidator(sudoku):
         return False
 
 if __name__ == "__main__":
-
-    from checkEsCuadrado import esCuadrado
-    from checkEsNumeroValido import esValido
-    from compararColumnas import compararColumnas
-    from compararLineas import compararLineas
-    from checkRegionTresTres import checkRegionTresTres
-
 
 
     assert sudokuValidator([[1,2,3,4],
